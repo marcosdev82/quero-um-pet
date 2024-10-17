@@ -13,6 +13,9 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.static('public'));
 
 // Routes (Adicione suas rotas aqui)
+const UserRoutes = require('./routes/UserRoutes')
+
+app.use('/users', UserRoutes)
 
 // Start server (Adicionei uma mensagem de sucesso)
 app.listen(5000, () => {
