@@ -41,5 +41,22 @@ module.exports =  class UserController {
             res.status(422).json({message: 'Por favor, utilize outro email!'})
             return
         }
+
+        const salt = await bcrypt.genSalt(12)
+        const passworHash = await bcrypt.has(password, salt)
+
+        const user = new User({
+            name: name,
+            email: email,
+            phone: phone,
+            password: passwordHash,
+        });
+
+        try {
+            const newUser = await user.save();
+            res.status(201).json({message: 'Usuário criado'})
+        } catch (error) {
+            res.status(500).json({message: error })
+        }
     }
 }
