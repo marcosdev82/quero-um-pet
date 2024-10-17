@@ -1,17 +1,20 @@
-const express = require('empress')
-const cors = require('cors')
+const express = require('express'); // Corrigido de 'empress' para 'express'
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-// Confi JSON response
-app.use(express.json())
+// Config JSON response (Corrigido 'Confi' para 'Config')
+app.use(express.json());
 
 // Solve CORS
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 // Public folder for images
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-//Routes
+// Routes (Adicione suas rotas aqui)
 
-app.listen(5000)
+// Start server (Adicionei uma mensagem de sucesso)
+app.listen(5000, () => {
+  console.log('Server running on http://localhost:5000');
+});
