@@ -17,7 +17,7 @@ const User = mongoose.model(
                 type: String,
                 required: true
             },
-            confimepassword: {
+            confirmpassword: {
                 type: String,
                 required: true
             },
