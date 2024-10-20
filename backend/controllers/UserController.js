@@ -26,12 +26,12 @@ module.exports =  class UserController {
             return
         }
         
-        if (!confirmPassword) {
+        if (!confirmpassword) {
             res.status(422).json({message: 'A confirmação de senha é obrigatória'})
             return
         }
 
-        if (password !== confirmPassword) {
+        if (password !== confirmpassword) {
             res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
             return
         }

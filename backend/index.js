@@ -18,6 +18,6 @@ const UserRoutes = require('./routes/UserRoutes')
 app.use('/users', UserRoutes)
 
 // Start server (Adicionei uma mensagem de sucesso)
-app.listen(5000, () => {
-  console.log('Server running on http://localhost:5000');
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });
