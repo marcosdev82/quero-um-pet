@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 // Solve CORS
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://127.0.0.1:4000' }));
 
 // Public folder for images
 app.use(express.static('public'));
@@ -18,6 +18,6 @@ const UserRoutes = require('./routes/UserRoutes')
 app.use('/users', UserRoutes)
 
 // Start server (Adicionei uma mensagem de sucesso)
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+app.listen(4000, () => {
+  console.log('Server running on http://127.0.0.1:4000');
 });

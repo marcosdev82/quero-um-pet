@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 module.exports =  class UserController {
     static async register(req, res) {
-        const {name, email, phone, password, confirmpassword} = req.body
+        const {name, email, phone, password} = req.body
 
         // validations
         if (!name) {
@@ -26,15 +26,15 @@ module.exports =  class UserController {
             return
         }
         
-        if (!confirmpassword) {
-            res.status(422).json({message: 'A confirmação de senha é obrigatória'})
-            return
-        }
+        // if (!confirmpassword) {
+        //     res.status(422).json({message: 'A confirmação de senha é obrigatória'})
+        //     return
+        // }
 
-        if (password !== confirmpassword) {
-            res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
-            return
-        }
+        // if (password !== confirmpassword) {
+        //     res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
+        //     return
+        // }
 
         // check is usre exists
         const userExists = await User.findOne({email: email})
@@ -48,18 +48,18 @@ module.exports =  class UserController {
         const passworHash = await bcrypt.hash(password, salt)
 
         const user = new User({
-            name: name,
-            email: email,
-            phone: phone,
+            name,
+            email,
+            phone,
             password: passworHash,
-            confirmpassword: confirmpassword
+            // confirmpassword: confirmpassword
         });
 
         try {
             const newUser = await user.save();
             res.status(201).json({message: 'Usuário criado', newUser})
         } catch (error) {
-            res.status(500).json({message: error })
+            res.status(500).json({message: error }) 
         }
     }
 }
