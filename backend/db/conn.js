@@ -19,4 +19,4 @@ async function main() {
 
 main().catch((err) => console.log('Erro ao conectar ao MongoDB:', err))
 
-module.exports = mongoose 
+module.exports = mongoose  
