@@ -76,7 +76,7 @@ module.exports =  class UserController {
         }
 
         if (!password) {
-            res.status(422).json({message: 'O password é obrigatório'})
+            res.status(422).json({message: 'A senha é obrigatória'})
             return
         }
 
@@ -97,5 +97,20 @@ module.exports =  class UserController {
         }
 
         await createUserToken(user, req, res)
+    }
+
+    static async checkUser(req, res) {
+        
+        let currentUser
+
+        console.log(req.headers.autorization)
+
+        if (req.headers.autorization) {
+
+        } else {
+            currentUser = null
+        }
+
+        res.status(200).send(currentUser)
     }
 }
