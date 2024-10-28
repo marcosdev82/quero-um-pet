@@ -125,7 +125,8 @@ module.exports =  class UserController {
 
         const id = req.params.id
 
-        const user = await User.findById(id)
+        const user = await User.findById(id).select("-password")
+     
 
         if (!user) {
             res.status(422).json({message: 'Usuário não encontrado!'})
