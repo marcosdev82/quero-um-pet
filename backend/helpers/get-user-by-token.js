@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const user = require('../models/User')
+const User = require('../models/User')
 
 // get user jwt token
 const getUserByToken = async (token) => {
@@ -9,9 +9,9 @@ const getUserByToken = async (token) => {
         return res.status(401).json({message: 'Acesso negado!'})
     }
     
-    const decoded = jwt.verify(token, "nossosecret")
+    const decoded = jwt.verify(token, "nossasecret")
 
-    const userId = decoded.indexOf
+    const userId = decoded.id
 
     const user = await User.findOne({_id: userId})
 
