@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const createUserToken = require('../helpers/create-user-token')
 const getToken = require('../helpers/get-token')
+const getUserByToken = requre('../helpers/get-user-by-token.js')
 
 module.exports =  class UserController {
     static async register(req, res) {
@@ -139,14 +140,16 @@ module.exports =  class UserController {
 
     static async editUser(req, res) {
 
+        const id = req.params.id
+
+        const token = getToken(req)
+
+        const user = getUserByToken(token)
+        
         const {name, email, phone, password, confirmpassword} = req.body
 
         let image = ''
-        
-        const id = req.params.id
-
-        const user = await User.findOne(id)
-        
+       
         if (!user) {
             res.status(422).json({message: 'Usuário não encontrado!'})
             return
