@@ -30,15 +30,15 @@ module.exports =  class UserController {
             return
         }
         
-        // if (!confirmpassword) {
-        //     res.status(422).json({message: 'A confirmação de senha é obrigatória'})
-        //     return
-        // }
+        if (!confirmpassword) {
+            res.status(422).json({message: 'A confirmação de senha é obrigatória'})
+            return
+        }
 
-        // if (password !== confirmpassword) {
-        //     res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
-        //     return
-        // }
+        if (password !== confirmpassword) {
+            res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
+            return
+        }
 
         // check is usre exists
         const userExists = await User.findOne({email: email})
@@ -138,7 +138,20 @@ module.exports =  class UserController {
     }
 
     static async editUser(req, res) {
-        res.status(422).json({message: 'Deu certo o update!'})
-        return
+
+        const {name, email, phone, password, confirmpassword} = req.body
+
+        let image = ''
+        
+        const id = req.params.id
+
+        const user = await User.findOne(id)
+        
+        if (!user) {
+            res.status(422).json({message: 'Usuário não encontrado!'})
+            return
+        }
+
+        // res.status(200).json({ user })
     }
 }
