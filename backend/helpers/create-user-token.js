@@ -7,7 +7,7 @@ const createUserToken = async (user, req, res) => {
         name: user.name,
         id: user._id
     },
-    "nossosecret")
+    "nossasecret")
 
     // Return token
     res.status(200).json({

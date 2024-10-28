@@ -1,11 +1,14 @@
 const getToken = (req) => {
+    const authHeader = req.headers.authorization;
 
-    const authHeader = req.headers.authorization
-    const token = authHeader (" ")[1]
+    if (!authHeader) {
+        console.log("Authorization header not found");
+        return null;
+    }
 
-    return token = getToken(req)
-    const decoded = jwt.verify(token, 'nossosecret')
+    const token = authHeader.split(' ')[1];
 
-}
+    return token;
+};
 
-module.exports = getToken
+module.exports = getToken;
