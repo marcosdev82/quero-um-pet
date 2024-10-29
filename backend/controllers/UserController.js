@@ -169,7 +169,7 @@ module.exports =  class UserController {
             return
         }
 
-        if (user.email !== email && userExists) {
+        if (user.email === email && userExists) {
             return res.status(422).json({ message: 'Por favor, utilize outro e-mail!' });
         }
 
@@ -204,10 +204,22 @@ module.exports =  class UserController {
             user.password = passworHash
 
         }
-       
-        console.log(user)
+        
+        try {
+            // returns user updated data
+            await User.findOneAndUpdate(
+                {_id: user._id},
+                {$set: user},
+                {new: true},
+            )
 
-        // res.status(200).json({ user })
-        return;
+            res.status(200).json({
+                message: 'Usuário atualiado com sucesso!'
+            })
+
+        } catch (err) {
+            res.status(500).json({ message: err })
+            return
+        }
     }
 }
