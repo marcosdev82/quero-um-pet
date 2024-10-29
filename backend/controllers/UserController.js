@@ -9,7 +9,7 @@ const getUserByToken = require('../helpers/get-user-by-token.js')
 
 module.exports =  class UserController {
     static async register(req, res) {
-        const {name, email, phone, password} = req.body
+        const {name, email, phone, password, confirmpassword} = req.body
 
         // validations
         if (!name) {
@@ -164,6 +164,11 @@ module.exports =  class UserController {
         // check if email has already been taken
         const userExists = await User.findOne({ email: email });
 
+        if (!user) {
+            res.status(422).json({message: 'Usuário não encontrado!'})
+            return
+        }
+
         if (user.email !== email && userExists) {
             return res.status(422).json({ message: 'Por favor, utilize outro e-mail!' });
         }
@@ -190,13 +195,19 @@ module.exports =  class UserController {
         if (password !== confirmpassword) {
             res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
             return
+        } else if (password === confirmpassword && password != null) {
+
+            // creating password
+            const salt = await bcrypt.genSalt(12)
+            const passworHash = await bcrypt.hash(password, salt)
+
+            user.password = passworHash
+
         }
        
-        if (!user) {
-            res.status(422).json({message: 'Usuário não encontrado!'})
-            return
-        }
+        console.log(user)
 
         // res.status(200).json({ user })
+        return;
     }
 }
