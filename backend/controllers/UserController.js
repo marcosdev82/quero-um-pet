@@ -150,6 +150,10 @@ module.exports =  class UserController {
 
         let image = ''
 
+        if (req.file) {
+            image = req.file.filename
+        }
+
         // Validations
         if (!name) {
             res.status(422).json({message: 'O nome é obrigatório'})
@@ -169,7 +173,7 @@ module.exports =  class UserController {
             return
         }
 
-        if (user.email === email && userExists) {
+        if (user.email !== email && userExists) {
             return res.status(422).json({ message: 'Por favor, utilize outro e-mail!' });
         }
 
@@ -182,15 +186,6 @@ module.exports =  class UserController {
 
         user.phone = phone
 
-        if (!password) {
-            res.status(422).json({message: 'A senha é obrigatória'})
-            return
-        }
-        
-        if (!confirmpassword) {
-            res.status(422).json({message: 'A confirmação de senha é obrigatória'})
-            return
-        }
 
         if (password !== confirmpassword) {
             res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
