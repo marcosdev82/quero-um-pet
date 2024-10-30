@@ -14,8 +14,10 @@ app.use(express.static('public'));
 
 // Routes (Adicione suas rotas aqui)
 const UserRoutes = require('./routes/UserRoutes')
+const PetRoutes = require('./routes/PetRoutes')
 
 app.use('/users', UserRoutes)
+app.use('/pets', PetRoutes)
 
 // Start server (Adicionei uma mensagem de sucesso)
 app.listen(4000, () => {

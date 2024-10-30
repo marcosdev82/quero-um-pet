@@ -35,4 +35,4 @@ const Pet = mongoose.model(
     )
 )
 
-module.exports = User
+module.exports = Pet
