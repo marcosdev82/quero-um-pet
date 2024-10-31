@@ -9,28 +9,34 @@ module.exports =  class PetController {
     static async create(req, res) {
       const { name, age, weight, color } = req.body
 
-      const available = true
+      const images = req.files
 
+      const available = true
       // image upload
 
       // Validations
       if (!name) {
-        res.status(422).json({message: 'O nome é obrigatório'})
+        res.status(422).json({message: 'O nome é obrigatório!'})
         return
       }
       
       if (!age) {
-        res.status(422).json({message: 'A idade é obrigatória'})
+        res.status(422).json({message: 'A idade é obrigatória!'})
         return
       }
 
       if (!weight) {
-        res.status(422).json({message: 'O peso é obrigatório'})
+        res.status(422).json({message: 'O peso é obrigatório!'})
         return
       }
 
       if (!color) {
-        res.status(422).json({message: 'A cor é obrigatória'})
+        res.status(422).json({message: 'A cor é obrigatória!'})
+        return
+      }
+
+      if (images.lenth === 0) {
+        res.status(422).json({message: 'A imagem é obrigatória!'})
         return
       }
 
@@ -52,6 +58,12 @@ module.exports =  class PetController {
           image: user.image,
           phone: user.phone
         }
+      })
+
+      console.log(images)
+
+      images.map((images) => {
+        pet.images.push(images.filename)
       })
       
       try {
