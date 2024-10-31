@@ -60,8 +60,6 @@ module.exports =  class PetController {
         }
       })
 
-      console.log(images)
-
       images.map((images) => {
         pet.images.push(images.filename)
       })
@@ -75,6 +73,15 @@ module.exports =  class PetController {
       } catch (error) {
         res.status(500).json({ message: error })
       }
+
+    }
+
+    static async getAll(req, res) {
+      const pets = await Pet.find().sort('-createdAt')
+
+      res.status(200).json({
+        pets: pets,
+      })
 
     }
 }
