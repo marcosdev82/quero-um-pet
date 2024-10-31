@@ -9,94 +9,102 @@ const getUserByToken = require('../helpers/get-user-by-token.js')
 
 module.exports =  class UserController {
     static async register(req, res) {
-        const {name, email, phone, password, confirmpassword} = req.body
-
+        const name = req.body.name
+        const email = req.body.email
+        const phone = req.body.phone
+        const password = req.body.password
+        const confirmpassword = req.body.confirmpassword
+    
         // validations
         if (!name) {
-            res.status(422).json({message: 'O nome é obrigatório'})
-            return
+          res.status(422).json({ message: 'O nome é obrigatório!' })
+          return
         }
-
+    
         if (!email) {
-            res.status(422).json({message: 'O e-mail é obrigatório'})
-            return
+          res.status(422).json({ message: 'O e-mail é obrigatório!' })
+          return
         }
-
+    
         if (!phone) {
-            res.status(422).json({message: 'O telefone é obrigatório'})
-            return
+          res.status(422).json({ message: 'O telefone é obrigatório!' })
+          return
         }
+    
         if (!password) {
-            res.status(422).json({message: 'A senha é obrigatória'})
-            return
+          res.status(422).json({ message: 'A senha é obrigatória!' })
+          return
         }
-        
+    
         if (!confirmpassword) {
-            res.status(422).json({message: 'A confirmação de senha é obrigatória'})
-            return
+          res.status(422).json({ message: 'A confirmação de senha é obrigatória!' })
+          return
         }
-
-        if (password !== confirmpassword) {
-            res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais'})
-            return
+    
+        if (password != confirmpassword) {
+          res
+            .status(422)
+            .json({ message: 'A senha e a confirmação precisam ser iguais!' })
+          return
         }
-
-        // check is user exists
-        const userExists = await User.findOne({email: email})
-
+    
+        // check if user exists
+        const userExists = await User.findOne({ email: email })
+    
         if (userExists) {
-            res.status(422).json({message: 'Por favor, utilize outro email!'})
-            return
+          res.status(422).json({ message: 'Por favor, utilize outro e-mail!' })
+          return
         }
-
+    
+        // create password
         const salt = await bcrypt.genSalt(12)
-        const passworHash = await bcrypt.hash(password, salt)
-
+        const passwordHash = await bcrypt.hash(password, salt)
+    
+        // create user
         const user = new User({
-            name,
-            email,
-            phone,
-            password: passworHash,
-            // confirmpassword: confirmpassword
-        });
-
+          name: name,
+          email: email,
+          phone: phone,
+          password: passwordHash,
+        })
+    
         try {
-            const newUser = await user.save();
-            await createUserToken(newUser, req, res)
+          const newUser = await user.save()
+    
+          await createUserToken(newUser, req, res)
         } catch (error) {
-            res.status(500).json({message: error }) 
+          res.status(500).json({ message: error })
         }
-        
     }
 
     static async login(req, res) {
-        const { email, password } = req.body
+        const email = req.body.email
+        const password = req.body.password
 
-         // validations
         if (!email) {
-            res.status(422).json({message: 'O e-mail é obrigatório'})
-            return
+        res.status(422).json({ message: 'O e-mail é obrigatório!' })
+        return
         }
 
         if (!password) {
-            res.status(422).json({message: 'A senha é obrigatória'})
-            return
+        res.status(422).json({ message: 'A senha é obrigatória!' })
+        return
         }
 
-        // check is usre exists
-        const user = await User.findOne({email: email})
+        // check if user exists
+        const user = await User.findOne({ email: email })
 
         if (!user) {
-            res.status(422).json({message: 'Não há usuário cadastrado com este e-mail!'})
-            return
+        return res
+            .status(422)
+            .json({ message: 'Não há usuário cadastrado com este e-mail!' })
         }
 
-        // check if password match width db password
+        // check if password match
         const checkPassword = await bcrypt.compare(password, user.password)
 
         if (!checkPassword) {
-            res.status(422).json({message: 'Senha inválida!'})
-            return
+        return res.status(422).json({ message: 'Senha inválida' })
         }
 
         await createUserToken(user, req, res)
