@@ -3,6 +3,7 @@ const Pet = require('../models/Pets')
 // helpers
 const getToken = require('../helpers/get-token')
 const getUserByToken = require('../helpers/get-user-by-token')
+const ObjectId = require('mongoose').Types.ObjectId
 
 module.exports =  class PetController {
 
@@ -112,4 +113,5 @@ module.exports =  class PetController {
       })
 
     }
+
 }
