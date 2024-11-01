@@ -124,8 +124,7 @@ module.exports =  class PetController {
 
       // check if pet exists
       const pet = await Pet.findOne({_id: id})
-      console.log(pet)
-
+    
       if (!pet) {
         res.status(404).json({message: 'Pet não encontrado!'})
       }
@@ -133,5 +132,23 @@ module.exports =  class PetController {
       res.status(200).json({
         pet: pet,
       })
+    }
+
+    static async removePetById(req, res) {
+      const id = req.params.id
+
+      // check ID is valid
+      if (!ObjectId.isValid(id)) {
+        res.status(422).json({ message: 'ID inválido'})
+      }
+
+      // check if pet exists
+      const pet = await Pet.findOne({_id: id})
+    
+      if (!pet) {
+        res.status(404).json({message: 'Pet não encontrado!'})
+      }
+
+      // check if logged in user registered the pet
     }
 }
