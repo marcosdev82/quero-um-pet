@@ -114,4 +114,24 @@ module.exports =  class PetController {
 
     }
 
+    static async getPetById(req, res) {
+      const id =req.params.id
+
+      if (!ObjectId.isValid(id)) {
+        res.status(422).json({message: 'ID inválido!'})
+        return
+      }
+
+      // check if pet exists
+      const pet = await Pet.findOne({_id: id})
+      console.log(pet)
+
+      if (!pet) {
+        res.status(404).json({message: 'Pet não encontrado!'})
+      }
+
+      res.status(200).json({
+        pet: pet,
+      })
+    }
 }
