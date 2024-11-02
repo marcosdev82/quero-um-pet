@@ -272,7 +272,34 @@ module.exports =  class PetController {
 
   }
 
+  static async concludeAdoption(req, res) {
+    const id = req.params.id
+
+    // check if pet exists
+    const pet = await Pet.findOne({ _id: id });
   
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet não encontrado!' });
+    }
+
+    // check if logged in user registered the pet 
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (pet.user._id.toString() !== user._id.toString()) {
+        return res.status(422).json({
+            message: 'Houve um problema em processar a sua solicitação, tente novamente mais tarde!'
+        });
+    }
+
+    pet.avalilable = false
+
+    await Pet.findByIdAndUpdate(id, pet)
+
+    return res.status(422).json({
+      message: 'Parabéns o ciclo de adoção foi finalizado com sucesso!'
+    });
+  }
 
   
 }
