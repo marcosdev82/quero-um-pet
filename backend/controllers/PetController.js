@@ -165,74 +165,67 @@ module.exports =  class PetController {
   }
 
   static async updatePet(req, res) {
-    const id = req.params.id
+    const id = req.params.id;
+    const { name, age, weight, color, available } = req.body;
+    const images = req.files;
+    const updateData = {};
 
-    const { name, age, weight, color, available } = req.body
-
-    const images = req.files
-
-    const updateData = {}
-
-    // check if pet exists
-    const pet = await Pet.findOne({_id: id})
+    // Verifica se o pet existe
+    const pet = await Pet.findOne({ _id: id });
   
     if (!pet) {
-      res.status(404).json({message: 'Pet não encontrado!'})
+        return res.status(404).json({ message: 'Pet não encontrado!' });
     }
 
-    // check if logged in user registered the pet
+    // Verifica se o usuário logado é o dono do pet
     const token = getToken(req);
     const user = await getUserByToken(token);
 
-    if (pet.user._id.toString() !== user._id.toString()) {
+    if (!user || pet.user._id.toString() !== user._id.toString()) {
         return res.status(422).json({
             message: 'Houve um problema em processar a sua solicitação, tente novamente mais tarde!'
         });
     }
 
-    // Validations
+    // Validações
     if (!name) {
-      res.status(422).json({message: 'O nome é obrigatório!'})
-      return
+        return res.status(422).json({ message: 'O nome é obrigatório!' });
     } else {
-      updateData.name = name
+        updateData.name = name;
     }
     
     if (!age) {
-      res.status(422).json({message: 'A idade é obrigatória!'})
-      return
+        return res.status(422).json({ message: 'A idade é obrigatória!' });
     } else {
-      updateData.age = age
+        updateData.age = age;
     }
 
     if (!weight) {
-      res.status(422).json({message: 'O peso é obrigatório!'})
-      return
+        return res.status(422).json({ message: 'O peso é obrigatório!' });
     } else {
-      updateData.weight = weight
+        updateData.weight = weight;
     }
 
     if (!color) {
-      res.status(422).json({message: 'A cor é obrigatória!'})
-      return
+        return res.status(422).json({ message: 'A cor é obrigatória!' });
     } else {
-      updateData.color = color
+        updateData.color = color;
     }
 
-    if (images.lenth === 0) {
-      res.status(422).json({message: 'A imagem é obrigatória!'})
-      return
+    if (!images || images.length === 0) {
+        return res.status(422).json({ message: 'A imagem é obrigatória!' });
     } else {
-      updateData = []
-      images.map((image) => {
-        updateData.images.push(image.filename)
-      })
+        updateData.images = [];
+        images.map((image) => {
+            updateData.images.push(image.filename);
+        });
     }
 
-    await Pet.findByIdAndUpdate(id, updateData)
+    // Atualiza os dados do pet
+    await Pet.findByIdAndUpdate(id, updateData);
 
-    res.status(200).json({message: 'Pet atualizado com sucesso!'})
-
+    return res.status(200).json({ message: 'Pet atualizado com sucesso!' });
   }
+
   
 }
