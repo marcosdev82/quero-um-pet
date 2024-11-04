@@ -1,10 +1,12 @@
 import Input from "../../form/input";
 
+import styles from "../../form/form.module.css"
+
 function handleChange(e) {}
 
 function Register() {
     return (
-        <section>
+        <section className={styles.form_container}>
             <h1>Register</h1>
             <form>
                 <Input
