@@ -1,4 +1,5 @@
 import Input from "../../form/input";
+import {Link} from "react-router-dom"
 
 import styles from "../../form/form.module.css"
 
@@ -45,6 +46,10 @@ function Register() {
                     handleOnChange={handleChange}
                 />
                 <input type="submit" value="Cadastrar" />
+                <p>
+                    Já tem conta? <Link to='/login'>Clique aqui</Link>.
+                    
+                </p>
                 
             </form>
         </section>
