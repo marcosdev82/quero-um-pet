@@ -16,3 +16,13 @@
     height: 40px;
     font-weight: bold;
 }
+.form_container input[type='submit']:hover {
+    background-color: #1c8a42;
+}
+.form_container p {
+    margin-top: 1em;
+}
+.form_container p a {
+    color: #16479d;
+    font-weight: bold;
+}
