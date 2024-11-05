@@ -1,11 +1,18 @@
+import { useState } from "react";
 import Input from "../../form/input";
 import {Link} from "react-router-dom"
 
 import styles from "../../form/form.module.css"
 
-function handleChange(e) {}
 
 function Register() {
+
+    const [user, serUser] = useState({})
+
+    function handleChange(e) {
+        setUser({...user, [e.target.name] : e.target.value})
+    }
+
     return (
         <section className={styles.form_container}>
             <h1>Register</h1>
