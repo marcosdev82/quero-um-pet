@@ -7,7 +7,7 @@ import styles from "../../form/form.module.css"
 
 function Register() {
 
-    const [user, serUser] = useState({})
+    const [user, setUser] = useState({})
 
     function handleChange(e) {
         setUser({...user, [e.target.name] : e.target.value})
