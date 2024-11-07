@@ -11,8 +11,7 @@ import Register from './components/pages/Auth/Register';
 import Home from './components/pages/Home';
 
 /** CONTEXT */
-import { UserProvider } from './context/UserContext';
-
+import { UserProvider } from './context/UserProvider';
 
 function App() {
   return (

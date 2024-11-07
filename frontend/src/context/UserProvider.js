@@ -1,13 +1,12 @@
-import { Children, createContext } from "react";
-
+import { createContext } from "react";  // Apenas crie o contexto
 import useAuth from "../hooks/useAuth";
 
-const Context = createContext()
+const Context = createContext();
 
 function UserProvider({ children }) {
-    const { register } = useAuth()
+    const { register } = useAuth();
 
-    return <Context.Provider value={{register}}>{Children}</Context.Provider>
+    return <Context.Provider value={{ register }}>{children}</Context.Provider>;
 }
 
-export { Context, UserProvider }
+export { Context, UserProvider };
