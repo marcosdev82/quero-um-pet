@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js localhost 5000"
+    "start": "nodemon ./index.js localhost 4000"
   },
   "author": "Matheus <marcostavares.dev@hotmail.com> (http://www.marcostavares.dev.com.br/)",
   "license": "MIT",
