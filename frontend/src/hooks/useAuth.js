@@ -1,9 +1,15 @@
 import api from '../utils/api'
 
 import { useState, useEffect } from 'react'
-import  {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
+import useFlashMessage from './useFlashMessage'
 
 export default function useAuth() {
+
+    const { setFlashMessage } = useFlashMessage();
+
+    let msgText = 'Cadastro realizado com sucesso'
+    let msgType = 'success'
 
     async function register(user) {
 
@@ -14,8 +20,13 @@ export default function useAuth() {
 
             console.log(data)
         } catch (error)  {
-            console.log(error)
+
+            msgText = error.rempose.data.message
+            msgType = 'error'
+            
         }
+
+        setFlashMessage(msgText, msgType)
 
     }
 

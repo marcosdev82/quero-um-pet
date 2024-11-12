@@ -1,4 +1,4 @@
-import bus from './utils/bus';
+import bus from '../utils/bus';
 
 export default function useFlashMessage() {
     function setFlashMessage(msg, type) {
