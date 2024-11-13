@@ -31,5 +31,5 @@ export default function useAuth() {
         navigate('/'); // Alteração para redirecionar com useNavigate
     }
 
-    return { register };
+    return { authenticated, register };
 }
