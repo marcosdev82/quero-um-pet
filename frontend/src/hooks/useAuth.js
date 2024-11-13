@@ -9,8 +9,6 @@ export default function useAuth() {
     const { setFlashMessage } = useFlashMessage();
     const navigate = useNavigate();
 
-
-
     let msgText = 'Cadastro realizado com sucesso';
     let msgType = 'success';
 
@@ -41,5 +39,17 @@ export default function useAuth() {
         navigate('/'); // Alteração para redirecionar com useNavigate
     }
 
-    return { authenticated, register };
+    function logout() {
+        let msgText = 'Logout realizado com sucesso';
+        let msgType = 'success';
+
+        setAuthenticated(false)
+        localStorage.removeItem('token')
+        api.defaults.headers.Authorization = undefined
+        navigate.push('/')
+
+        setFlashMessage(msgText, msgType)
+
+    return { authenticated, register, logout };
 }
+
