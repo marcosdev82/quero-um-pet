@@ -10,7 +10,7 @@ import { Context } from './../../context/UserProvider'
 
 function Navbar() {
 
-    const { authenticated } = useContext(Context)
+    const { authenticated, logout } = useContext(Context)
 
     return (
        <nav className={styles.navbar}>
@@ -21,7 +21,9 @@ function Navbar() {
             <ul>
                 <li><Link to="/">Adotar</Link></li>
                 {
-                    authenticated ? ('Logado') : (
+                    authenticated ? (
+                        <li><Link to="#" onClick={logout}>Sair</Link></li> // Corrigido o link para chamar a função logout
+                    ) : (
                         <>
                             <li><Link to="/login">Entrar</Link></li>
                             <li><Link to="/register">Cadastrar</Link></li>

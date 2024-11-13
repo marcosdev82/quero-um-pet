@@ -40,16 +40,16 @@ export default function useAuth() {
     }
 
     function logout() {
-        let msgText = 'Logout realizado com sucesso';
-        let msgType = 'success';
-
-        setAuthenticated(false)
-        localStorage.removeItem('token')
-        api.defaults.headers.Authorization = undefined
-        navigate.push('/')
-
-        setFlashMessage(msgText, msgType)
+        const msgText = 'Logout realizado com sucesso';
+        const msgType = 'success';
+    
+        setAuthenticated(false);
+        localStorage.removeItem('token');
+        api.defaults.headers.Authorization = undefined;
+        navigate('/'); // Corrigido para usar navigate como função
+    
+        setFlashMessage(msgText, msgType);
+    }
 
     return { authenticated, register, logout };
 }
-
