@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import Input from '../../form/input'
 
-import styles from '../../form/Form.module.css'
+import styles from '../../form/form.module.css'
 
 /** CONTEXT */
 import { Context } from '../../../context/UserProvider'
@@ -10,14 +10,23 @@ import { Link } from 'react-router-dom'
 
 function Login() {
 
+    const [user, setUser] = useState({})
+    const {login} = useContext(Context)
+    
     function handleChange(e) {
+        setUser({...user, [e.target.name] : e.target.value})
+        console.log(user)
+    }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        login(user)
     }
 
     return (
         <section className={styles.form_container}>
             <h1>Login</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Input
                     text="E-mail"
                     type="email"
@@ -28,7 +37,7 @@ function Login() {
                 <Input
                     text="Senha"
                     type="Password"
-                    name="Password"
+                    name="password"
                     placeholder="Digite a sua senha"
                     handleOnChange={handleChange} 
                 />
