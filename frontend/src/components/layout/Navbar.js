@@ -22,7 +22,10 @@ function Navbar() {
                 <li><Link to="/">Adotar</Link></li>
                 {
                     authenticated ? (
-                        <li><Link to="#" onClick={logout}>Sair</Link></li> // Corrigido o link para chamar a função logout
+                        <>
+                            <li><Link to="#" onClick={logout}>Sair</Link></li>
+                            <li><Link to="/user/profile">Perfil</Link></li>
+                        </>
                     ) : (
                         <>
                             <li><Link to="/login">Entrar</Link></li>
