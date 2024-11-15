@@ -1,3 +1,4 @@
+import api from '../../../utils/api'
 import { useState, useEffect } from 'react'
 import styles from './Profile.module.css'
 import formStyles from '../../form/form.module.css'
@@ -6,6 +7,19 @@ import Input from '../../form/input'
 function Profile() {
 
     const [user, setUser ] = useState({});
+    const [token] = useState(localStorage.getItem('token') || '')
+
+    useEffect(() => {
+
+        api.get('/users/checkuser', {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}` 
+            }
+        }).then((response) =>{
+            setUser(response.data)
+        })
+
+    },[token])
 
     function onFileChange(e) {
 
