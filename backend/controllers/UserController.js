@@ -155,16 +155,18 @@ module.exports =  class UserController {
         const user = await getUserByToken(token)
         
         const {name, email, phone, password, confirmpassword} = req.body
-        
+
         if (req.file) {
             user.image = req.file.filename
         }
 
-        // Validations
+        // validations
         if (!name) {
-            res.status(422).json({message: 'O nome é obrigatório'})
-            return
+          res.status(422).json({ message: 'O nome é obrigatório!' })
+          return
         }
+
+        user.name = name
 
         if (!email) {
             res.status(422).json({message: 'O e-mail é obrigatório'})
@@ -205,6 +207,10 @@ module.exports =  class UserController {
             user.password = passworHash
 
         }
+
+      
+        
+
         
         try {
             // returns user updated data
