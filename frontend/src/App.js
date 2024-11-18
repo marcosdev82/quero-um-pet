@@ -14,6 +14,7 @@ import Profile from './components/pages/User/Profile';
 
 /** CONTEXT */
 import { UserProvider } from './context/UserProvider';
+import MyPets from './components/pages/Pet/MyPets';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/user/profile" element={<Profile />} />
+            <Route path="/pet/mypets" element={<MyPets />} />
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes> 
