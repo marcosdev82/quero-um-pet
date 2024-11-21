@@ -1,6 +1,6 @@
 import styles from './Input.module.css';
 
-function Input({
+function Input({ 
     type,
     text,
     name,
