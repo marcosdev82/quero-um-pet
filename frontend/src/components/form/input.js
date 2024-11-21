@@ -1,4 +1,4 @@
-import styles from './input.module.css';
+import styles from './Input.module.css';
 
 function Input({
     type,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import formStyles from './form.module.css';
-import Input from './input';
+import formStyles from './Form.module.css';
+import Input from './Input';
 
 function PetForm(handleSubmit, petData, btnTxt) {
     const [pet, setPet] = useState(petData || {});  
@@ -59,7 +59,6 @@ function PetForm(handleSubmit, petData, btnTxt) {
         <input type='submit' value={btnTxt}/>
 
     </form>
-
 }
 
 export default PetForm;
