@@ -1,13 +1,16 @@
-import api from '../../../utils/api'
+import api from '../../../utils/api';
 
-import styles from './Addpet.module.css'
+import styles from './Addpet.module.css';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { redirect } from 'react-router-dom'
+import { redirect } from 'react-router-dom';
+
+/** Components */
+import PetForm from '../../form/PetForm';
 
 /** Hooks */
-import useFlashMessage from '../../../hooks/useFlashMessage'
+import useFlashMessage from '../../../hooks/useFlashMessage';
 
 function AddPet() {
     return (
@@ -16,7 +19,7 @@ function AddPet() {
                 <h1>Cadastre um pet</h1>
                 <p>Depois ele ficará disponível para adoção</p>
             </div>
-            <p>Formulário</p>
+            <PetForm btnTxt="Cadastrar pet"/>
         </section>
     )
 }

@@ -56,7 +56,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
             value={pet.weight || ''}
         />
         
-        <input type='submit' value='Cadastrar pet'/>
+        <input type='submit' value={btnTxt}/>
 
     </form>
 
