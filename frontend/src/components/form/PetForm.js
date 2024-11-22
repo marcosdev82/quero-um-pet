@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import formStyles from './Form.module.css';
 import Input from './Input';
+import Select from './Select';
 
 function PetForm(handleSubmit, petData, btnTxt) {
     const [pet, setPet] = useState(petData || {});  
@@ -12,6 +13,10 @@ function PetForm(handleSubmit, petData, btnTxt) {
     }
 
     function handleChange(e) {
+
+    }
+
+    function handleColor(e){
 
     }
 
@@ -55,7 +60,13 @@ function PetForm(handleSubmit, petData, btnTxt) {
             placeholder="Digite o peso"
             value={pet.weight || ''}
         />
-        
+        <Select
+            name="color"
+            text="Selecione a cor"
+            options={colors}
+            handleOnChange={handleColor}
+            value={pet.color || ''}
+        />
         <input type='submit' value={btnTxt}/>
 
     </form>
