@@ -7,7 +7,6 @@ function MyPets() {
     const [pets, setPets] = useState([]);
 
     return (
-
         <section>
             <h1>MyPets</h1>
             <Link to="/pet/add">Cadastrar pet</Link>
