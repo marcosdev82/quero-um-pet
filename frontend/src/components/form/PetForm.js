@@ -20,7 +20,11 @@ function PetForm(handleSubmit, petData, btnTxt) {
 
     }
 
-    return <form className={formStyles.form_container} >
+    function handleSubmit(e){
+        e.preventDefault();
+    }
+
+    return <form className={formStyles.form_container} onSubmit={handleSubmit}>
         <Input 
             text="Imagens do pet"
             type="file"

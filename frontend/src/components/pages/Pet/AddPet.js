@@ -1,5 +1,3 @@
-import api from '../../../utils/api';
-
 import styles from './Addpet.module.css';
 
 import { useState } from 'react';
