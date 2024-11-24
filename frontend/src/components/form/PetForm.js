@@ -17,7 +17,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
     }
 
     function handleColor(e){
-
+        setPet({...pet, color: e.target.options[e.target.selectedIndex].text})
     }
 
     return <form className={formStyles.form_container} onSubmit={handleSubmit}>
