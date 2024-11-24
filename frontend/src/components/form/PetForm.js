@@ -13,7 +13,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
     }
 
     function handleChange(e) {
-
+        setPet({...pet, [e.target.name]: e.target.value})
     }
 
     function handleColor(e){
