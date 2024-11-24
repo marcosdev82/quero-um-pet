@@ -23,8 +23,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
 
     function submit(e) {
         e.preventDefault();
-        console.log(pet)
-        // handleSubmit(pet)
+        handleSubmit(pet)
     }
 
     return <form className={formStyles.form_container} onSubmit={submit}>
