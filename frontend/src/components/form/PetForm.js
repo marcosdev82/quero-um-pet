@@ -9,7 +9,6 @@ function PetForm(handleSubmit, petData, btnTxt) {
     const colors = ['Preto', 'Branco', 'Cinza', 'Caramelo', 'Mesclado'];
 
     function onFileChange(e) {
-        console.log(e.target.files)
         setPreview(Array.from(e.target.files))
         setPet({...pet, images: [e.target.files]})
     }
@@ -30,7 +29,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
 
     return <form className={formStyles.form_container} onSubmit={submit}>
 
-        <div>
+        <div className={formStyles.preview_pet_images}>
         {preview.length > 0 
             ? preview.map((image, index) => (
                 <img 

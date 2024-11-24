@@ -26,3 +26,14 @@
     color: #16479d;
     font-weight: bold;
 }
+
+/** FORMA PET */
+.preview_pet_images {
+    display: flex;
+    justify-content: center;
+}
+.preview_pet_images img {
+    width: 100px;
+    height: 100px;
+    margin: .5em;
+}
