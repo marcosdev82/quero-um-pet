@@ -9,7 +9,7 @@ function PetForm(handleSubmit, petData, btnTxt) {
     const colors = ['Preto', 'Branco', 'Cinza', 'Caramelo', 'Mesclado'];
 
     function onFileChange(e) {
-
+        setPet({...pet, images: [e.target.file]})
     }
 
     function handleChange(e) {
@@ -18,10 +18,6 @@ function PetForm(handleSubmit, petData, btnTxt) {
 
     function handleColor(e){
 
-    }
-
-    function handleSubmit(e){
-        e.preventDefault();
     }
 
     return <form className={formStyles.form_container} onSubmit={handleSubmit}>
