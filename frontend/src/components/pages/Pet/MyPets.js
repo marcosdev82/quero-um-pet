@@ -2,9 +2,15 @@ import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
+import RoundedImage from '../../layout/RoundedImage';
+
+/** hooks */
+import useFlashMessage from '../../../hooks/useFlashMessage';
+
 function MyPets() {
 
     const [pets, setPets] = useState([]);
+    const [token] = useState(localStorage.getItem('token') || '')
 
     return (
         <section>
