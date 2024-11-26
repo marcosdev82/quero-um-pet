@@ -12,7 +12,7 @@ function MyPets() {
     const { setFlashMessage } = useFlashMessage();
 
     useEffect(() => {
-        api.pet('/pets/mypets', {
+        api.get('/pets/mypets', {
             headers: {
                 Autorization: `Bearer ${JSON.parse(token)}`,
             }
@@ -31,7 +31,7 @@ function MyPets() {
                     pets.map((pet) => (
                         <div key={pet._id}>
                             <RoundedImage 
-                                src={`${process.env.REAT_APP_API}/images/pets/${image}`}
+                                src={`${process.env.REAT_APP_API}/images/pets/${pet.image}`}
                                 alt={pet.name}
                                 width="77px"
                             />
