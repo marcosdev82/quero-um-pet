@@ -9,6 +9,7 @@ module.exports =  class PetController {
 
     static async create(req, res) {
       const { name, age, weight, color } = req.body
+      // console.log(req.body)
 
       const images = req.files
 

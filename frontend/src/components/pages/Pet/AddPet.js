@@ -21,12 +21,13 @@ function AddPet() {
         const formData = new FormData();
 
         Object.keys(pet).forEach((key) => {
+
             if (key === 'images') {
                 for (let i = 0; i < pet[key].length; i++) {
                     formData.append('images', pet[key][i]);
                 }
             } else {
-                formData.append(key, pet[key]); // Corrigido de pet['key'] para pet[key]
+                formData.append(key, pet[key]);  
             }
         });
 
@@ -34,7 +35,7 @@ function AddPet() {
             .post('pets/create', formData, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
-                    'Content-Type': 'multipart/form-data', // Corrigido multpart para multipart
+                    'Content-Type': 'multipart/form-data', 
                 },
             })
             .then((response) => {

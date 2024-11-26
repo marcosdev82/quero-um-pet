@@ -8,6 +8,8 @@ function PetForm({ handleSubmit, petData, btnTxt }) {
     const [preview, setPreview] = useState([]);
     const colors = ['Preto', 'Branco', 'Cinza', 'Caramelo', 'Mesclado'];
 
+  
+
     function onFileChange(e) {
         const files = Array.from(e.target.files);
         setPreview(files);
@@ -19,11 +21,13 @@ function PetForm({ handleSubmit, petData, btnTxt }) {
     }
 
     function handleColor(e) {
-        setPet({ ...pet, color: e.target.value });
-    }
+        setPet({ ...pet, color: e.target.options[e.target.selectedIndex].text });
+        
+    }   
 
     function submit(e) {
         e.preventDefault();
+        console.log("Dados do pet enviados:", pet);
         handleSubmit(pet);
     }
 
