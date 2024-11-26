@@ -27,7 +27,18 @@ function MyPets() {
             <h1>MyPets</h1>
             <Link to="/pet/add">Cadastrar pet</Link>
             <div>
-                {pets.length > 0 && <p>Meus pets cadastrados</p>}
+                {pets.length > 0 && 
+                    pets.map((pet) => (
+                        <div key={pet._id}>
+                            <RoundedImage 
+                                src={`${process.env.REAT_APP_API}/images/pets/${image}`}
+                                alt={pet.name}
+                                width="77px"
+                            />
+                            <span className="bold">{pet.name}</span>
+                        </div>
+                    ))
+                }
                 {pets.length === 0 && <p>Não há pets cadastrados</p>}
             </div>
         </section>
