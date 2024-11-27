@@ -52,7 +52,7 @@ function MyPets() {
                             />
                             <span className="bold">{pet.name}</span>
                             <div className={styles.actions}>
-                                {pet.avaliable ? (
+                                {pet.available ? (
                                     <>
                                         {pet.adopter && <button className={styles.conclude_btn}>Concluir adoção</button>}
                                         <Link to={`/pet/edit/${pet._id}`}>Editar</Link>

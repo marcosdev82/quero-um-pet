@@ -52,14 +52,14 @@ module.exports =  class PetController {
         age,
         weight,
         color,
-        available,
         images: [],
         user: {
           _id: user._id,
           name: user.name,
           image: user.image,
           phone: user.phone
-        }
+        },
+        available
       })
 
       images.map((images) => {
