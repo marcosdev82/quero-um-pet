@@ -38,3 +38,35 @@
     align-items: center;
     width: 100%;
 }
+
+.petlist_row  img {
+    margin-right: 1em;
+}
+
+.petlist_row span {
+    min-width:  100px;
+}
+
+.actions {
+    margin-left: auto;
+}
+
+.actions a,
+.actions button {
+    text-decoration: none;
+    background-color: transparent;
+    color:#fff;
+    font-weight: bold;
+    cursor:pointer;
+    transition: .5s;
+    padding: 7px 12px;
+    border: 2px solid  #16479d;
+    font-size: 12px;
+    margin-left: 1em;
+}
+
+.actions a:hover,
+.actions button:hover  {
+    background-color: #16479d;
+    color: #fff;
+}

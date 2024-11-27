@@ -46,9 +46,20 @@ function MyPets() {
                             <RoundedImage 
                                 src={`${process.env.REACT_APP_API}/images/pets/${pet.images[0]}`}
                                 alt={pet.name}
-                                width="77px"
+                                width="px77"
                             />
                             <span className="bold">{pet.name}</span>
+                            <div className={styles.actions}>
+                                {pet.avaliable ? (
+                                    <>
+                                        {pet.adopter && <button className={styles.concluir_adocao}>Concluir adoção</button>}
+                                        <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
+                                        <button>Excluir</button>
+                                    </>
+                                ):(
+
+                                )}
+                            </div>
                         </div>
                     ))
                 ) : (
