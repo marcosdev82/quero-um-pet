@@ -25,7 +25,7 @@ const Pet = mongoose.model(
                 type: Array,
                 required: true 
             },
-            avalilable: {
+            available: {
                 type: Boolean
             },
             user: Object,

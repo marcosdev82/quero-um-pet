@@ -37,8 +37,10 @@ function MyPets() {
 
     return (
         <section>
-            <h1>MyPets</h1>
-            <Link to="/pet/add">Cadastrar pet</Link>
+            <div className={styles.petList_header}>
+                <h1>MyPets</h1>
+                <Link to="/pet/add">Cadastrar pet</Link>
+            </div>
             <div className={styles.petlist_container}>
                 {pets.length > 0 ? (
                     pets.map((pet) => (
