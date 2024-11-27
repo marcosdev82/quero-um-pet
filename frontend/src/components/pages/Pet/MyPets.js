@@ -52,12 +52,12 @@ function MyPets() {
                             <div className={styles.actions}>
                                 {pet.avaliable ? (
                                     <>
-                                        {pet.adopter && <button className={styles.concluir_adocao}>Concluir adoção</button>}
+                                        {pet.adopter && <button className={styles.conclude_btn}>Concluir adoção</button>}
                                         <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
                                         <button>Excluir</button>
                                     </>
                                 ):(
-
+                                    <p>Pet já adotado</p>
                                 )}
                             </div>
                         </div>

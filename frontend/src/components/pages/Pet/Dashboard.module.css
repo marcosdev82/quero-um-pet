@@ -70,3 +70,12 @@
     background-color: #16479d;
     color: #fff;
 }
+.conclude_btn {
+    color: #25B456;
+    border: 1px solid #25B456;
+}
+.conclude_btn:hover {
+    color: #fff;
+    border: 1px solid #25B456;
+    background-color: #25B456;
+}
