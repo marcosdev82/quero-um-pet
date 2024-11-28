@@ -16,11 +16,21 @@ function EditPet() {
     const [token] = useState(localStorage.getItem('token'))
     const {id} = useParams()
     const {setFlashMessage} = useFlashMessage()
+
+    useEffect(() => {
+        api
+            .get(`/pets/${id}`, {
+                Authorization: `Bearer ${JSON.parse(token)}`
+            })
+            .then((response) => {
+                setPet(response.data.pet)
+            })
+    }, [token, id])
     
     return (
         <section>
             <div className={styles.addpet_header}>
-                <h1>Editando o Pet: 'pet.name'</h1>
+                <h1>Editando o Pet: {pet.name}</h1>
                 <p>Depois da edição os dados serão atualizados no sitema</p>
             </div>
         </section>
