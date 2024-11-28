@@ -36,6 +36,7 @@ function MyPets() {
     }, [token, setFlashMessage]);
 
     async function removePet(id) {
+
         let msgType = 'success'
 
         const data = await api.delete(`/pets/${id}`, {
@@ -45,14 +46,14 @@ function MyPets() {
             },
         })
         .then((response) => {
-           const updatedPets = pets.filter((pets) => pet._id != id)
-           setPets(updatedPets)
-           response.data
-        })
-        .catch((err) => {
-            msgType = 'error'
-            return err.response.data
-        })
+            const updatedPets = pets.filter((pet) => pet._id != id)
+            setPets(updatedPets)
+            return response.data
+         })
+         .catch((err) => {
+             msgType = 'error'
+             return err.response.data
+         })
         setFlashMessage(data.message, 'error');
     }
 
@@ -77,7 +78,7 @@ function MyPets() {
                                     <>
                                         {pet.adopter && <button className={styles.conclude_btn}>Concluir adoção</button>}
                                         <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
-                                        <button>Excluir</button>
+                                        <button onClick={() => removePet(pet._id)}>Excluir</button>
                                     </>
                                 ):(
                                     <p>Pet já adotado</p>
