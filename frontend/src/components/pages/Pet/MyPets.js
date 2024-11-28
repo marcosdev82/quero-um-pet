@@ -54,7 +54,7 @@ function MyPets() {
              msgType = 'error'
              return err.response.data
          })
-        setFlashMessage(data.message, 'error');
+        setFlashMessage(data.message, msgType);
     }
 
     return (

@@ -8,13 +8,17 @@ function PetForm({ handleSubmit, petData, btnTxt }) {
     const [preview, setPreview] = useState([]);
     const colors = ['Preto', 'Branco', 'Cinza', 'Caramelo', 'Mesclado'];
 
-  
 
     function onFileChange(e) {
         const files = Array.from(e.target.files);
-        setPreview(files);
+        if (files.length === 0) {
+            console.error("Nenhum arquivo foi selecionado.");
+            return;
+        }
+        setPreview(files); // Certifique-se de que 'files' é um array de `File` ou `Blob`.
         setPet({ ...pet, images: files });
     }
+    
 
     function handleChange(e) {
         setPet({ ...pet, [e.target.name]: e.target.value });
@@ -36,18 +40,21 @@ function PetForm({ handleSubmit, petData, btnTxt }) {
             <div className={formStyles.preview_pet_images}>
                 {preview.length > 0
                     ? preview.map((image, index) => (
+                       
                           <img
                               src={URL.createObjectURL(image)}
                               alt={`Preview ${index}`}
-                              key={index}
+                              key={`${pet.name}+${index}`}
+                              onLoad={() => URL.revokeObjectURL(image)}
                           />
                       ))
                     : pet.images &&
                       pet.images.map((image, index) => (
                           <img
-                              src={image.url || URL.createObjectURL(image)}
+                              src={`${process.env.REACT_APP_API}/images/pets/${image}`}
                               alt={pet.name || `Imagem ${index}`}
-                              key={index}
+                              key={`${pet.name}+${index}`}
+                              onLoad={() => URL.revokeObjectURL(image)}
                           />
                       ))}
             </div>
