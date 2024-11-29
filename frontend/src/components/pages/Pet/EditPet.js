@@ -31,7 +31,7 @@ function EditPet() {
     async function updatePet(pet) {
         let msgType = 'success'
 
-        const formData = new FormData();
+        const formData = new FormData()
 
         await Object.keys(pet).forEach((key) => {
             if (key === 'images') {
@@ -42,6 +42,21 @@ function EditPet() {
                 formData.append(key, pet[key])
             }
         })
+
+        const data = await api.petch(`pets/${pet._id}`, formData, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+                'Content-Type': 'multipart/form-data'
+            }   
+        }).then((response) => {
+            return response.data
+        }).catch((err) => {
+            msgType = 'error'
+            return err.response.data
+        })
+
+        setFlashMessage(data.message, msgType)
+
     }
     
     return (
