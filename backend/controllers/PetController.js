@@ -213,7 +213,7 @@ module.exports =  class PetController {
         updateData.color = color;
     }
 
-    if (!images || images.length === 0) {
+    if (images.length > 0) {
         return res.status(422).json({ message: 'A imagem é obrigatória!' });
     } else {
         updateData.images = [];
