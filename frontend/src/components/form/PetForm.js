@@ -38,6 +38,7 @@ function PetForm({ handleSubmit, petData, btnTxt }) {
     return (
         <form className={formStyles.form_container} onSubmit={submit}>
             <div className={formStyles.preview_pet_images}>
+               
                 {preview.length > 0
                     ? preview.map((image, index) => (
                        

@@ -171,6 +171,8 @@ module.exports =  class PetController {
     const images = req.files;
     const updateData = {};
 
+
+
     // Verifica se o pet existe
     const pet = await Pet.findOne({ _id: id });
   
@@ -212,14 +214,15 @@ module.exports =  class PetController {
     } else {
         updateData.color = color;
     }
-
-    if (images.length > 0) {
+    
+    if (images.length === 0) {
         return res.status(422).json({ message: 'A imagem é obrigatória!' });
     } else {
         updateData.images = [];
         images.map((image) => {
             updateData.images.push(image.filename);
         });
+        
     }
 
     // Atualiza os dados do pet

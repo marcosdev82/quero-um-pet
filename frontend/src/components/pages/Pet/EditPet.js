@@ -34,15 +34,16 @@ function EditPet() {
         const formData = new FormData()
 
         await Object.keys(pet).forEach((key) => {
-  
-            if (pet[key] === 'images') {
+            if (key === 'images') {
                 for (let i = 0; i < pet[key].length; i++) {
-                    formData.append(pet[key][i])
+                    formData.append('images', pet[key][i])
                 }
             } else {
                 formData.append(key, pet[key])
             }
+            console.log(formData)
         })
+        
 
         const data = await api.patch(`pets/${pet._id}`, formData, {
             headers: {
