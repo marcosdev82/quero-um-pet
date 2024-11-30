@@ -23,7 +23,7 @@ function EditPet() {
                 Authorization: `Bearer ${JSON.parse(token)}`
             })
             .then((response) => {
-                console.log(response)
+                // console.log(response)
                 setPet(response.data.pet)
             })
     }, [token, id])
@@ -41,7 +41,6 @@ function EditPet() {
             } else {
                 formData.append(key, pet[key])
             }
-            console.log(formData)
         })
         
 
