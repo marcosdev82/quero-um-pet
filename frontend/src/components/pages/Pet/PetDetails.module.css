@@ -1,0 +1,24 @@
+.pet_details_container {
+    text-align: center;
+}
+
+.pet_details_container p {
+    margin-bottom:  1em;
+}
+
+.pet_details_header {
+    margin-bottom: 2em;
+}
+
+.pet_images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+.pet_images img {
+    max-height: 200px;
+    margin-right: 1em;
+}
+.pet_details_container button {
+    
+}

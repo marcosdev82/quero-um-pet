@@ -22,12 +22,12 @@ function PetDetails() {
     return(
         <>
             {pet.name && (
-                <section>
-                    <div>
+                <section className={styles.pet_details_container}>
+                    <div className={styles.pet_details_header}>
                         <h1>Conhecendo o Pet: {pet.name}</h1>
                         <p>Se tiver interesse, marque uma visita para conhecê-lo</p>
                     </div>
-                    <div>
+                    <div className={styles.pet_images}>
                     {
                         pet.images.map((image, index) => (
                             <img
@@ -38,6 +38,17 @@ function PetDetails() {
                         ))
                     }
                     </div>
+                    <p>
+                        <span className="bold">Peso:</span> {pet.weight} kg
+                    </p>
+                    <p>
+                        <span className="bold">Idade:</span> {pet.age} anos
+                    </p>
+                    {token ? (
+                        <button>Solicitar um visita</button>
+                    ) : (
+                        <p>Você precisa <Link to="/register">criar um conta</Link> para solicitar a visita</p>
+                    )}
                 </section>
             )}
         </>
