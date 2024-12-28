@@ -25,8 +25,23 @@ function PetDetails() {
                 <section>
                     <div>
                         <h1>Conhecendo o Pet: {pet.name}</h1>
+                        <p>Se tiver interesse, marque uma visita para conhecê-lo</p>
+                    </div>
+                    <div>
+                    {
+                        pet.images.map((image, index) => (
+                            <img
+                                src={`${process.env.REACT_APP_API}/images/pets/${image}`}
+                                alt={pet.name}
+                                key={index}
+                            />
+                        ))
+                    }
                     </div>
                 </section>
             )}
         </>
     )
+}
+
+export default PetDetails
