@@ -20,8 +20,13 @@ function PetDetails() {
     }, [id])
 
     return(
-        <h1>{pet.name}</h1>
+        <>
+            {pet.name && (
+                <section>
+                    <div>
+                        <h1>Conhecendo o Pet: {pet.name}</h1>
+                    </div>
+                </section>
+            )}
+        </>
     )
-}
-
-export default PetDetails
