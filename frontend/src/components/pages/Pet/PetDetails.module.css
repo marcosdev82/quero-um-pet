@@ -14,11 +14,30 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1em;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 .pet_images img {
     max-height: 200px;
     margin-right: 1em;
+    margin-bottom:  1em;
 }
 .pet_details_container button {
-    
+    text-decoration: none;
+    background-color: #25b456;
+    color:#fff;
+    font-weight: bold;
+    cursor:pointer;
+    transition: .5s;
+    padding: 7px 15px;
+    border: none;
+    font-size: 1.1em;
+    margin-left: 1em;
+    border-radius: 5px;
+    max-width: 200px;
+    min-height: 2.5em;
+}
+.pet_details_container button:hover { 
+    background-color: #1C8A42;
 }
