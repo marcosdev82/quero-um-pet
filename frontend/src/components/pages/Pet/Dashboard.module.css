@@ -81,3 +81,9 @@
     border: 1px solid #25B456;
     background-color: #25B456;
 }
+.contacts {
+    margin-left: 2em;
+}
+.contacts p {
+    margin-bottom:  0.5em;
+}
